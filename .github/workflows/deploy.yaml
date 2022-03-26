@@ -19,16 +19,13 @@ jobs:
         with:
           channel: beta
           flutter-version: 2.12.0-4.1.pre
-      - uses: bluefireteam/flutter-gh-pages@v8
-        with:
-          workingDir: ${{ github.workspace }}/webapp
       - name: Build
         run: |
           cd webapp
           flutter config --enable-web
           flutter build web --release
-          mv build/web ../build
-          cd ../build
+          mv build/web ${{ github.workspace }}/build
+          cd ${{ github.workspace }}/build
           git config user.name github-actions
           git config user.email github-actions@github.com
           git --work-tree build/web add --all

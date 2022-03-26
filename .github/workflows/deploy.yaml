@@ -17,6 +17,7 @@ jobs:
         with:
           channel: beta
           flutter-version: 2.12.0-4.1.pre
+      - run: cd webapp
       - uses: bluefireteam/flutter-gh-pages@v8
         with:
           workingDir: webapp

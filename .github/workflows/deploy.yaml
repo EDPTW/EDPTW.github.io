@@ -22,3 +22,15 @@ jobs:
       - uses: bluefireteam/flutter-gh-pages@v8
         with:
           workingDir: ${{ github.workspace }}/webapp
+      - name: Build
+        run: |
+          cd webapp
+          flutter config --enable-web
+          flutter build web --release
+          mv build/web ../build
+          cd ../build
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git --work-tree build/web add --all
+          git commit -m "Automatic deployment by github-actions"
+          git push origin HEAD:gh-page --force

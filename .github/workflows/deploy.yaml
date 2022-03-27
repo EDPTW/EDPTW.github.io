@@ -22,6 +22,7 @@ jobs:
       - name: Build
         run: |
           cd webapp
+          git checkout main
           git pull
           cd ${{ github.workspace }}
           git add .

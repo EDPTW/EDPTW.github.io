@@ -21,9 +21,14 @@ jobs:
           flutter-version: 2.12.0-4.1.pre
       - name: Build
         run: |
+          cd webapp
+          git pull
+          cd ${{ github.workspace }}
+          git add .
+          git commit -m "Automatic update submodules"
+          git push origin main --force
           flutter config --build-dir=../build
           flutter config --enable-web
-          cd webapp
           flutter build web --release
           cd ${{ github.workspace }}
           git config user.name github-actions

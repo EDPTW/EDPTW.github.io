@@ -21,6 +21,8 @@ jobs:
           flutter-version: 2.12.0-4.1.pre
       - name: Build
         run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com          
           cd webapp
           git checkout main
           git pull
@@ -32,8 +34,6 @@ jobs:
           flutter config --enable-web
           flutter build web --release
           cd ${{ github.workspace }}
-          git config user.name github-actions
-          git config user.email github-actions@github.com
           git --work-tree build/web add --all
           git commit -m "Automatic deployment by github-actions"
           git push origin HEAD:gh-page --force

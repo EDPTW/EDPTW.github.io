@@ -32,6 +32,7 @@ jobs:
           git push origin main --force
           flutter config --build-dir=../build
           flutter config --enable-web
+          cd webapp
           flutter build web --release
           cd ${{ github.workspace }}
           git --work-tree build/web add --all
